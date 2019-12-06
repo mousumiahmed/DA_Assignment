@@ -18,9 +18,7 @@ export default class SearchChapter extends React.Component{
             chapter:e.target.value
         })
     }
-    handleKeyUp = event => {
-        this.setState({ query: this.ref.value });
-      };
+  
 
     componentDidMount() {
         axios.get(`http://localhost:5000/lists`)
@@ -50,19 +48,14 @@ export default class SearchChapter extends React.Component{
                         onChange={this.onSubmit}
                         className="text-center"
                     >
-                        {/* <input type="text" name="chapter" value={this.state.chapter} placeholder="Enter chapter Name" onChange={this.Chapter}/> */}
-                        <input type="text" name="chapter" onKeyUp={this.handleKeyUp}
-            ref={ref => (this.ref = ref)}
-            id="editor"
-          />
-                        
+                        <input type="text" name="chapter" value={this.state.chapter} placeholder="Enter chapter Name" onChange={this.Chapter}/>
                     </form>
               </div>
               <div className = "container">
                 <div className = "row">    
                 {this.state.lists.map((value,index) => {
                     //console.log(value.subject);
-                    if(value.chapter===this.state.query){
+                    if(value.chapter===this.state.chapter){
                         return(
                             <div key={index} className = "col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-2">
                                  <div className="card"style ={{boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.29)"}}>
